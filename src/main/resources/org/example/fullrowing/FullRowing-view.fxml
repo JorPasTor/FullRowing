@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fullrowing.FullRowingController">
+   <children>
+      <GridPane fx:id="gpLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="470.0" prefWidth="620.0" style="-fx-background-color: lightblue;" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.8" minWidth="10.0" prefWidth="215.8" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="0.0" prefWidth="16.80000000000001" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.20000000000005" minWidth="10.0" prefWidth="272.39996948242185" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.20000000000005" minWidth="10.0" prefWidth="101.60003051757815" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="155.6" minHeight="10.0" prefHeight="155.6" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="148.39999237060547" minHeight="10.0" prefHeight="79.6" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="191.59999237060543" minHeight="10.0" prefHeight="90.79999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="166.39999999999998" minHeight="10.0" prefHeight="140.40000000000003" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblUsuario" text="Usuario:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfUsuario" prefHeight="26.0" prefWidth="248.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <PasswordField fx:id="tpContrasena" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="lblContrasena" text="Contraseña:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Label>
+           <Button fx:id="btnLogin" onAction="#onLoginButtonClick" text="Login" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Button>
+            <Label prefHeight="58.0" prefWidth="292.0" text="FullRowing" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Consolas" size="48.0" />
+               </font>
+               <effect>
+                  <Reflection />
+               </effect>
+            </Label>
+            <ImageView fitHeight="83.0" fitWidth="127.0" opacity="0.88" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../../../logos/Principal.png" />
+               </image>
+               <effect>
+                  <Reflection />
+               </effect>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpMenu" prefHeight="470.0" prefWidth="125.0" style="-fx-background-color: lightblue;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="107.39999237060547" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="62.400000000000006" minHeight="0.0" prefHeight="21.80000190734863" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="166.2" minHeight="10.0" prefHeight="87.19999999999999" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="134.39999999999998" minHeight="10.0" prefHeight="83.6" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="122.00000000000003" minHeight="10.0" prefHeight="92.00000000000003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="81.19999999999999" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.40000000000003" minHeight="10.0" prefHeight="80.59999999999997" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="29.399999999999977" minHeight="10.0" prefHeight="19.399999999999977" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fx:id="ivRowers" fitHeight="70.0" fitWidth="100.0" layoutX="23.0" layoutY="92.0" onMouseClicked="#onRowersButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../logos/remero.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ivCoaches" fitHeight="70.0" fitWidth="100.0" onMouseClicked="#onCoachesButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../../../logos/entrenador.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ivStatistics" fitHeight="75.0" fitWidth="100.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#onStatisticsButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../../../logos/datos.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ivAssists" fitHeight="70.0" fitWidth="100.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#onAssistsButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../../../logos/asistencia.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ivInfo" fitHeight="70.0" fitWidth="100.0" layoutX="10.0" layoutY="90.0" onMouseClicked="#onInfoButtonClick" opacity="0.65" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <image>
+                  <Image url="@../../../logos/bombilla.png" />
+               </image></ImageView>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpRowers" layoutX="150.0" layoutY="25.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: lightblue; -fx-background-radius: 5;" visible="false">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="43.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="407.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane fx:id="gpRowersFields" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="102.0" />
+                  <ColumnConstraints fx:id="gpDepAnadir" hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="253.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="52.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="125.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="102.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="88.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="tfAnoNacDep" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Nombre: " GridPane.rowIndex="1" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Primer apellido: " GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font></Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Segundo apellido: " GridPane.rowIndex="3" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="DNI: " GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="140.0" text="ID: " GridPane.halignment="LEFT">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="tfIdDep" GridPane.columnIndex="1" />
+                  <TextField fx:id="tfNombreDep" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="tfPrimerApellidoDep" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="tfSegundoApellidoDep" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="tfDniDep" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Año nacimiento: " GridPane.rowIndex="6" />
+                  <Label fx:id="lblCategoria" alignment="CENTER_RIGHT" contentDisplay="BOTTOM" prefHeight="17.0" prefWidth="140.0" GridPane.rowIndex="8" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Modalidad: " GridPane.rowIndex="7" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="140.0" text="Genero: " GridPane.rowIndex="5" />
+                  <CheckBox fx:id="cbBancoMovilDep" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" text="Banco Movil" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                  <CheckBox fx:id="cbBancoFijoDep" mnemonicParsing="false" prefHeight="17.0" prefWidth="101.0" text="Banco Fijo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+                  <ComboBox fx:id="cbGeneroDep" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="lbCategoriaDep" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpRowerOption" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="65.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="61.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="99.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="68.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="73.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="btnAcceptRower" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onAcceptRowerButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logos/aceptar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDeclineRower" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onDeclineRowerButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../../../logos/rechazar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnEditRower" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onEditRowerButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../../../logos/editar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnAddRower" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onAddRowerButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                     <image>
+                        <Image url="@../../../logos/añadir.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnSearchRower" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onSearchRowerButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../../../logos/buscar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDeleteRower" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onDeleteRowerButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../../../logos/borrar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <Label text="DEPORTISTAS" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font></Label>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpCoaches" layoutX="150.0" layoutY="25.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: lightblue; -fx-background-radius: 5;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="42.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="408.0" minWidth="10.0" prefWidth="408.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane fx:id="gpCoachFields" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="102.0" />
+                  <ColumnConstraints fx:id="gpDepAnadir1" hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="248.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="52.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="ID: " GridPane.halignment="RIGHT" />
+                  <Label text="Nombre: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Label text="Primer Apellido: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label text="Segundo Apellido: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <Label text="DNI: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <Label text="Genero: " GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <TextField fx:id="tfIdEnt" GridPane.columnIndex="1" />
+                  <TextField fx:id="tfNombreEnt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="tfPrimerApellidoEnt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="tfSegundoApellidoEnt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="tfDniEnt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="lbCategoriaEnt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="cbGeneroEnt" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpCoachOption" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="62.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="81.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="74.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="69.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="65.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fx:id="btnAcceptCoach" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onAcceptCoachButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logos/aceptar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDeclineCoach" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onDeclineCoachButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../../../logos/rechazar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnEditCoach" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onEditCoachButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../../../logos/editar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnAddCoach" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onAddCoachButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                     <image>
+                        <Image url="@../../../logos/añadir.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnSearchCoach" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onSearchCoachButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../../../logos/buscar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDeleteCoach" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onDeleteCoachButtonClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../../../logos/borrar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <Label text="ENTRENADORES" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpStatistics" layoutX="150.0" layoutY="25.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: lightblue; -fx-background-radius: 5;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="23.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="187.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="241.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="306.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="9.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="43.0" prefWidth="306.0" text="ESTADISTICAS" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbCF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="lbCM" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="lbJM" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label fx:id="lbJF" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="lbSM" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Label fx:id="lbSF" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="lbVM" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Label fx:id="lbVF" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="lbJFNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <Label text="RECORDS" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font></Label>
+            <Label fx:id="lbJFWats" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label fx:id="lbJMNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+            <Label fx:id="lbJMWats" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Label layoutX="32.0" layoutY="220.0" text="RECORDS" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbCFNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+            <Label fx:id="lbCMNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+            <Label fx:id="lbCFWats" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <Label fx:id="lbCMWats" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Label fx:id="lbSFNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+            <Label fx:id="lbSMNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+            <Label fx:id="lbSFWats" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Label fx:id="lbSMWats" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Label fx:id="lbVFNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+            <Label fx:id="lbVFWats" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <Label fx:id="lbVMNombre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
+            <Label fx:id="lbVMWats" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+            <Label text=" 2000" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+            <Label text=" 1000" GridPane.columnIndex="2" GridPane.rowIndex="11">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpAssists" layoutX="150.0" layoutY="25.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: lightblue; -fx-background-radius: 5;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="49.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="401.0" minWidth="10.0" prefWidth="401.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="43.0" prefWidth="306.0" text="ASISTENCIA" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpInfo" layoutX="150.0" layoutY="25.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: lightblue; -fx-background-radius: 5;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="299.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="43.0" prefWidth="306.0" text="INFO" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</Pane>
