@@ -14,7 +14,7 @@ public class FullRowingModel {
     }
 
 //region Deportistas
-    public void addDeportistas(String nombreDep, String primerApellidoDep, String segundoApellidoDep, String dniDep, boolean generoDep, int anoNacDep, boolean modalidadBancoFijo, boolean modalidadBancoMovil) {
+    public void addDeportistas(String nombreDep, String primerApellidoDep, String segundoApellidoDep, String dniDep, boolean generoDep, int anoNacDep, boolean modalidadBancoFijo, boolean modalidadBancoMovil, int peso, int wats) {
         try (Session session = ConectionDB.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
@@ -28,6 +28,8 @@ public class FullRowingModel {
             newDeportista.setAñonac(anoNacDep);
             newDeportista.setBancoFijo(modalidadBancoFijo);
             newDeportista.setBancoMovil(modalidadBancoMovil);
+            newDeportista.setKg(peso);
+            newDeportista.setWats(wats);
 
             session.save(newDeportista);
             transaction.commit();
@@ -51,7 +53,7 @@ public class FullRowingModel {
         }
         return null;
     }
-    public void editarDeportista(String idDep, String nombreDep, String primerApellidoDep, String segundoApellidoDep, String dniDep, boolean generoDep, int anoNacDep, boolean modalidadBancoMovil, boolean modalidadBancoFijo) {
+    public void editarDeportista(String idDep, String nombreDep, String primerApellidoDep, String segundoApellidoDep, String dniDep, boolean generoDep, int anoNacDep, boolean modalidadBancoMovil, boolean modalidadBancoFijo, int peso, int wats) {
         try (Session session = ConectionDB.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
@@ -68,6 +70,8 @@ public class FullRowingModel {
                 existingDeportista.setAñonac(anoNacDep);
                 existingDeportista.setBancoMovil(modalidadBancoMovil);
                 existingDeportista.setBancoFijo(modalidadBancoFijo);
+                existingDeportista.setKg(peso);
+                existingDeportista.setWats(wats);
 
                 // Guardar los cambios
                 session.update(existingDeportista);
@@ -78,9 +82,6 @@ public class FullRowingModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
     }
     public void deleteDeportista(String idDeportista){
         try (Session session = ConectionDB.getSessionFactory().openSession()) {
@@ -232,6 +233,64 @@ public class FullRowingModel {
             return false;
         }
     }
+//endregion
+
+//region Categorias
+    public boolean categoriaEntrenadorExist(int idCategoria) {
+        try (Session session = ConectionDB.getSessionFactory().openSession()) {
+            String hql = "SELECT COUNT(*) \n" +
+                    "FROM CategoriasEntity c \n" +
+                    "WHERE c.idcategoria = :idCat \n" +
+                    "  AND c.entrenadoresByIdEntrenador IS NOT NULL";
+            Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("idCat", idCategoria);
+
+            Long count = query.uniqueResult();
+            return count != null && count > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public Integer entrenadorCategoria(int idCategoria) {
+        try (Session session = ConectionDB.getSessionFactory().openSession()) {
+            String hql = "SELECT c.entrenadoresByIdEntrenador.ident " +
+                    "FROM CategoriasEntity c " +
+                    "WHERE c.idcategoria = :idCat";
+            Query<Integer> query = session.createQuery(hql, Integer.class);
+            query.setParameter("idCat", idCategoria);
+
+            return query.uniqueResult(); // Devuelve el idEntrenador o null si no existe
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Retorna null en caso de error
+        }
+    }
+    public void addEntrenadorCategoria(int idCategoria, int idEntrenador) {
+        try (Session session = ConectionDB.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            String hql = "UPDATE CategoriasEntity c " +
+                    "SET c.entrenadoresByIdEntrenador = (SELECT e FROM EntrenadoresEntity e WHERE e.ident = :idEnt) " +
+                    "WHERE c.idcategoria = :idCat";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("idEnt", idEntrenador);
+            query.setParameter("idCat", idCategoria);
+
+            int rowsAffected = query.executeUpdate();
+            transaction.commit();
+
+            if (rowsAffected > 0) {
+                System.out.println("El entrenador con ID " + idEntrenador + " ha sido asignado a la categoría con ID " + idCategoria);
+            } else {
+                System.out.println("No se encontró la categoría con ID " + idCategoria);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 //endregion
 
 //region Estadisticas
@@ -484,7 +543,6 @@ public class FullRowingModel {
         }
         return null; // Retorna null en caso de error
     }
-
 
 
 

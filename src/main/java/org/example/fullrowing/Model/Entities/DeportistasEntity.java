@@ -2,6 +2,7 @@ package org.example.fullrowing.Model.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,13 +13,13 @@ public class DeportistasEntity {
     private String primerApellido;
     private String segundoApellido;
     private String dni;
-    private Integer categoria;
     private Boolean bancoFijo;
     private Boolean bancoMovil;
     private Integer añonac;
     private Boolean genero;
     private Integer kg;
     private Integer wats;
+    private Collection<AsistenciasEntity> asistenciasByIddeportista;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -69,16 +70,6 @@ public class DeportistasEntity {
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    @Basic
-    @Column(name = "categoria", nullable = true)
-    public Integer getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Integer categoria) {
-        this.categoria = categoria;
     }
 
     @Basic
@@ -146,11 +137,20 @@ public class DeportistasEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeportistasEntity that = (DeportistasEntity) o;
-        return iddeportista == that.iddeportista && Objects.equals(nombre, that.nombre) && Objects.equals(primerApellido, that.primerApellido) && Objects.equals(segundoApellido, that.segundoApellido) && Objects.equals(dni, that.dni) && Objects.equals(categoria, that.categoria) && Objects.equals(bancoFijo, that.bancoFijo) && Objects.equals(bancoMovil, that.bancoMovil) && Objects.equals(añonac, that.añonac) && Objects.equals(genero, that.genero) && Objects.equals(kg, that.kg) && Objects.equals(wats, that.wats);
+        return iddeportista == that.iddeportista && Objects.equals(nombre, that.nombre) && Objects.equals(primerApellido, that.primerApellido) && Objects.equals(segundoApellido, that.segundoApellido) && Objects.equals(dni, that.dni) && Objects.equals(bancoFijo, that.bancoFijo) && Objects.equals(bancoMovil, that.bancoMovil) && Objects.equals(añonac, that.añonac) && Objects.equals(genero, that.genero) && Objects.equals(kg, that.kg) && Objects.equals(wats, that.wats);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iddeportista, nombre, primerApellido, segundoApellido, dni, categoria, bancoFijo, bancoMovil, añonac, genero, kg, wats);
+        return Objects.hash(iddeportista, nombre, primerApellido, segundoApellido, dni, bancoFijo, bancoMovil, añonac, genero, kg, wats);
+    }
+
+    @OneToMany(mappedBy = "deportistasByIdDeportista")
+    public Collection<AsistenciasEntity> getAsistenciasByIddeportista() {
+        return asistenciasByIddeportista;
+    }
+
+    public void setAsistenciasByIddeportista(Collection<AsistenciasEntity> asistenciasByIddeportista) {
+        this.asistenciasByIddeportista = asistenciasByIddeportista;
     }
 }

@@ -13,6 +13,8 @@
       <mapping class="org.example.fullrowing.Model.Entities.CategoriasEntity"/>
       <mapping class="org.example.fullrowing.Model.Entities.DeportistasEntity"/>
       <mapping class="org.example.fullrowing.Model.Entities.EntrenadoresEntity"/>
+      <mapping class="org.example.fullrowing.Model.Entities.AnunciosEntity"/>
+      <mapping class="org.example.fullrowing.Model.Entities.AsistenciasEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

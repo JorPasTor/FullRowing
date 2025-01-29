@@ -14,10 +14,10 @@ public class FullRowingApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 620, 470);
 
         scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
-        stage.setMinWidth(620);
-        stage.setMinHeight(470);
-        stage.setMaxWidth(620);
-        stage.setMaxHeight(470);
+        stage.setMinWidth(670);
+        stage.setMinHeight(590);
+        stage.setMaxWidth(670);
+        stage.setMaxHeight(590);
         stage.setTitle("FULLROWING!");
         stage.setScene(scene);
         stage.show();

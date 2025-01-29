@@ -2,6 +2,7 @@ package org.example.fullrowing.Model.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +14,8 @@ public class EntrenadoresEntity {
     private String segundoApellido;
     private String dni;
     private Boolean genero;
-    private Integer idcategoria;
+    private boolean esCoordinador;
+    private Collection<CategoriasEntity> categoriasByIdent;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -77,13 +79,13 @@ public class EntrenadoresEntity {
     }
 
     @Basic
-    @Column(name = "idcategoria", nullable = true)
-    public Integer getIdcategoria() {
-        return idcategoria;
+    @Column(name = "es_coordinador", nullable = false)
+    public boolean isEsCoordinador() {
+        return esCoordinador;
     }
 
-    public void setIdcategoria(Integer idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setEsCoordinador(boolean esCoordinador) {
+        this.esCoordinador = esCoordinador;
     }
 
     @Override
@@ -91,11 +93,20 @@ public class EntrenadoresEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EntrenadoresEntity that = (EntrenadoresEntity) o;
-        return ident == that.ident && Objects.equals(nombre, that.nombre) && Objects.equals(primerApellido, that.primerApellido) && Objects.equals(segundoApellido, that.segundoApellido) && Objects.equals(dni, that.dni) && Objects.equals(genero, that.genero) && Objects.equals(idcategoria, that.idcategoria);
+        return ident == that.ident && esCoordinador == that.esCoordinador && Objects.equals(nombre, that.nombre) && Objects.equals(primerApellido, that.primerApellido) && Objects.equals(segundoApellido, that.segundoApellido) && Objects.equals(dni, that.dni) && Objects.equals(genero, that.genero);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ident, nombre, primerApellido, segundoApellido, dni, genero, idcategoria);
+        return Objects.hash(ident, nombre, primerApellido, segundoApellido, dni, genero, esCoordinador);
+    }
+
+    @OneToMany(mappedBy = "entrenadoresByIdEntrenador")
+    public Collection<CategoriasEntity> getCategoriasByIdent() {
+        return categoriasByIdent;
+    }
+
+    public void setCategoriasByIdent(Collection<CategoriasEntity> categoriasByIdent) {
+        this.categoriasByIdent = categoriasByIdent;
     }
 }

@@ -73,6 +73,11 @@ public class FullRowingController {
     private CheckBox cbBancoMovilDep;
     @FXML
     private Label lbCategoriaDep;
+    @FXML
+    private TextField tfPesoDep;
+    @FXML
+    private TextField tfWatsDep;
+
 
 
     @FXML
@@ -107,6 +112,23 @@ public class FullRowingController {
     private ComboBox cbGeneroEnt;
     @FXML
     private Label lbCategoriaEnt;
+
+    @FXML
+    private CheckBox cbCM;
+    @FXML
+    private CheckBox cbCF;
+    @FXML
+    private CheckBox cbJM;
+    @FXML
+    private CheckBox cbJF;
+    @FXML
+    private CheckBox cbSM;
+    @FXML
+    private CheckBox cbSF;
+    @FXML
+    private CheckBox cbVM;
+    @FXML
+    private CheckBox cbVF;
 
 
     @FXML
@@ -166,8 +188,19 @@ public class FullRowingController {
 
     @FXML
     private GridPane gpAssists;
+
+
+
     @FXML
     private GridPane gpInfo;
+    @FXML
+    private Label lblFechaMensaje;
+    @FXML
+    private Label lblTextoMensaje;
+    @FXML
+    private TextField tfMansaje;
+
+
 //endregion
 
 
@@ -343,6 +376,10 @@ public class FullRowingController {
         cbBancoMovilDep.setDisable(false);
         cbBancoMovilDep.setSelected(false);
         lbCategoriaDep.setText("");
+        tfPesoDep.setDisable(false);
+        tfPesoDep.setText("");
+        tfWatsDep.setDisable(false);
+        tfWatsDep.setText("");
 
         ObservableList<String> genero = FXCollections.observableArrayList("Masculino", "Femenino");
         cbGeneroDep.setItems(genero);
@@ -398,8 +435,8 @@ public class FullRowingController {
         cbBancoFijoDep.setSelected(false);
         cbBancoMovilDep.setDisable(false);
         cbBancoMovilDep.setSelected(false);
-
-
+        tfPesoDep.setDisable(false);
+        tfWatsDep.setDisable(false);
     }
     public void onDeleteRowerButtonClick(MouseEvent mouseEvent) {
         optionSelectedDep = 4;
@@ -420,6 +457,8 @@ public class FullRowingController {
              String primerApellidoDep = tfPrimerApellidoDep.getText();
              String segundoApellidoDep = tfSegundoApellidoDep.getText();
              String dniDep = tfDniDep.getText();
+             int peso = Integer.parseInt(tfPesoDep.getText());
+             int wats = Integer.parseInt(tfWatsDep.getText());
 
              boolean generoDep;
              if(cbGeneroDep.getValue() == "Masculino"){
@@ -441,7 +480,7 @@ public class FullRowingController {
                  modalidadBancoMovil = true;
              }
 
-             model.addDeportistas(nombreDep, primerApellidoDep, segundoApellidoDep, dniDep, generoDep, anoNacDep, modalidadBancoFijo, modalidadBancoMovil);
+             model.addDeportistas(nombreDep, primerApellidoDep, segundoApellidoDep, dniDep, generoDep, anoNacDep, modalidadBancoFijo, modalidadBancoMovil, peso, wats);
              startOptions();
              lbCategoriaDep.setText("Deportista añadido.");
          }
@@ -459,6 +498,8 @@ public class FullRowingController {
                  tfNombreDep.setText(deportista.getNombre());
                  tfPrimerApellidoDep.setText(deportista.getPrimerApellido());
                  tfSegundoApellidoDep.setText(deportista.getSegundoApellido());
+                 tfPesoDep.setText(String.valueOf(deportista.getKg()));
+                 tfWatsDep.setText(String.valueOf(deportista.getWats()));
 
                  if(deportista.getGenero()){
                      ObservableList<String> genero = FXCollections.observableArrayList("Masculino");
@@ -500,6 +541,9 @@ public class FullRowingController {
              String primerApellidoDep = tfPrimerApellidoDep.getText();
              String segundoApellidoDep = tfSegundoApellidoDep.getText();
              String dniDep = tfDniDep.getText();
+             int peso = Integer.parseInt(tfPesoDep.getText());
+             int wats = Integer.parseInt(tfWatsDep.getText());
+
 
              boolean generoDep;
              if(cbGeneroDep.getValue() == "Masculino"){
@@ -522,7 +566,7 @@ public class FullRowingController {
              }
 
              if(model.deportistaExist(idDep) == true){
-                 model.editarDeportista(idDep,nombreDep,primerApellidoDep,segundoApellidoDep,dniDep,generoDep,anoNacDep,modalidadBancoMovil,modalidadBancoFijo);
+                 model.editarDeportista(idDep,nombreDep,primerApellidoDep,segundoApellidoDep,dniDep,generoDep,anoNacDep,modalidadBancoMovil,modalidadBancoFijo, peso, wats);
              }
              else{
                  lbCategoriaDep.setText("Deportista no existe.");
@@ -572,6 +616,58 @@ public class FullRowingController {
         //Rellenar con tipos de genero.
         lbCategoriaDep.setText("");
 
+
+        cbCM.setSelected(false);
+
+        cbCF.setSelected(false);
+        cbJM.setSelected(false);
+        cbJF.setSelected(false);
+        cbSM.setSelected(false);
+        cbSF.setSelected(false);
+        cbVM.setSelected(false);
+        cbVF.setSelected(false);
+
+        if(model.categoriaEntrenadorExist(1)){
+            cbCM.setDisable(true);
+        }else{
+            cbCM.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(2)){
+            cbCF.setDisable(true);
+        }else{
+            cbCF.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(3)){
+            cbJM.setDisable(true);
+        }else{
+            cbJM.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(4)){
+            cbJF.setDisable(true);
+        }else{
+            cbJF.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(5)){
+            cbSM.setDisable(true);
+        }else{
+            cbSM.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(6)){
+            cbSF.setDisable(true);
+        }else{
+            cbSF.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(7)){
+            cbVM.setDisable(true);
+        }else{
+            cbVM.setDisable(false);
+        }
+        if(model.categoriaEntrenadorExist(8)){
+            cbVF.setDisable(true);
+        }else{
+            cbVF.setDisable(false);
+        }
+
         ObservableList<String> genero = FXCollections.observableArrayList("Masculino", "Femenino");
         cbGeneroEnt.setItems(genero);
     }
@@ -615,6 +711,7 @@ public class FullRowingController {
         tfSegundoApellidoEnt.setDisable(false);
         tfDniEnt.setDisable(false);
         cbGeneroEnt.setDisable(false);
+
     }
     public void onDeleteCoachButtonClick(MouseEvent mouseEvent) {
         optionSelectedEnt = 4;
@@ -644,9 +741,40 @@ public class FullRowingController {
                 generoEnt = false;
             }
 
-            model.addEntrenador(nombreEnt, primerApellidoEnt, segundoApellidoEnt, dniEntText, generoEnt);
-            startOptions();
-            lbCategoriaEnt.setText("Entrenador añadido.");
+            if (!model.entrenadorExistDni(dniEntText)) {
+
+                model.addEntrenador(nombreEnt, primerApellidoEnt, segundoApellidoEnt, dniEntText, generoEnt);
+
+                if(cbCM.isSelected()){
+                    model.addEntrenadorCategoria(1, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbCF.isSelected()){
+                    model.addEntrenadorCategoria(2, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbJM.isSelected()){
+                    model.addEntrenadorCategoria(3, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbJF.isSelected()){
+                    model.addEntrenadorCategoria(4, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbSM.isSelected()){
+                    model.addEntrenadorCategoria(5, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbSF.isSelected()){
+                    model.addEntrenadorCategoria(6, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbVM.isSelected()){
+                    model.addEntrenadorCategoria(7, model.searchEntrenador(dniEntText).getIdent());
+                }
+                if(cbVF.isSelected()){
+                    model.addEntrenadorCategoria(8, model.searchEntrenador(dniEntText).getIdent());
+                }
+                lbCategoriaEnt.setText("Entrenador añadido.");
+                startOptions();
+            }
+            else{
+                lbCategoriaEnt.setText("Entrenador existe.");
+            }
         }
         if (optionSelectedEnt == 2){
             //Aceptar buscar
@@ -678,6 +806,94 @@ public class FullRowingController {
                 btnDeleteCoach.setVisible(true);
                 btnEditCoach.setVisible(true);
                 tfDniEnt.setDisable(true);
+
+                if(model.categoriaEntrenadorExist(1)){
+                    if(Objects.equals(model.entrenadorCategoria(1), Integer.valueOf(tfIdEnt.getText()))){
+                        cbCM.setDisable(false);
+                        cbCM.setSelected(true);
+                    }else{
+                        cbCM.setDisable(true);
+                    }
+                }else{
+                    cbCM.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(2)){
+                    if(Objects.equals(model.entrenadorCategoria(2), Integer.valueOf(tfIdEnt.getText()))){
+                        cbCF.setDisable(false);
+                        cbCF.setSelected(true);
+
+                    }else{
+                        cbCF.setDisable(true);
+                    }
+                }else{
+                    cbCF.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(3)){
+                    if(Objects.equals(model.entrenadorCategoria(3), Integer.valueOf(tfIdEnt.getText()))){
+                        cbJM.setDisable(false);
+                        cbJM.setSelected(true);
+
+                    }else{
+                        cbJM.setDisable(true);
+                    }
+                }else{
+                    cbJM.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(4)){
+                    if(Objects.equals(model.entrenadorCategoria(4), Integer.valueOf(tfIdEnt.getText()))){
+                        cbJF.setDisable(false);
+                        cbJF.setSelected(true);
+
+                    }else{
+                        cbJF.setDisable(true);
+                    }
+                }else{
+                    cbJF.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(5)){
+                    if(Objects.equals(model.entrenadorCategoria(5), Integer.valueOf(tfIdEnt.getText()))){
+                        cbSM.setDisable(false);
+                        cbSM.setSelected(true);
+
+                    }else{
+                        cbSM.setDisable(true);
+                    }
+                }else{
+                    cbSM.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(6)){
+                    if(Objects.equals(model.entrenadorCategoria(6), Integer.valueOf(tfIdEnt.getText()))){
+                        cbSF.setDisable(false);
+                        cbSF.setSelected(true);
+
+                    }else{
+                        cbSF.setDisable(true);
+                    }
+                }else{
+                    cbSF.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(7)){
+                    if(Objects.equals(model.entrenadorCategoria(7), Integer.valueOf(tfIdEnt.getText()))){
+                        cbVM.setDisable(false);
+                        cbVM.setSelected(true);
+
+                    }else{
+                        cbVM.setDisable(true);
+                    }
+                }else{
+                    cbVM.setDisable(false);
+                }
+                if(model.categoriaEntrenadorExist(8)){
+                    if(Objects.equals(model.entrenadorCategoria(8), Integer.valueOf(tfIdEnt.getText()))){
+                        cbVF.setDisable(false);
+                        cbVF.setSelected(true);
+
+                    }else{
+                        cbVF.setDisable(true);
+                    }
+                }else{
+                    cbVF.setDisable(false);
+                }
             }
             else{
                 lbCategoriaEnt.setText("Entrenador no existe.");
@@ -880,6 +1096,13 @@ public class FullRowingController {
     }
 //endregion
 
+//region info
+    public void onEnviarMensajeButtonClick(MouseEvent mouseEvent) {
+        lblFechaMensaje.setText("04/01/25 - 17:36");
+        lblTextoMensaje.setText(tfMansaje.getText());
+    }
+//endregion
+
 //region Metodos auxiliares
     private void fadeInGridPane(GridPane gridPane) {
         gridPane.setVisible(true);
@@ -925,6 +1148,11 @@ public class FullRowingController {
         cbBancoFijoDep.setSelected(false);
         cbBancoMovilDep.setDisable(true);
         cbBancoMovilDep.setSelected(false);
+        tfPesoDep.setDisable(true);
+        tfPesoDep.setText("");
+        tfWatsDep.setDisable(true);
+        tfWatsDep.setText("");
+
 
         lbCategoriaDep.setText("");
 
@@ -934,7 +1162,7 @@ public class FullRowingController {
         btnEditCoach.setVisible(false);
         btnAddCoach.setVisible(true);
         btnSearchCoach.setVisible(true);
-        btnDeleteCoach.setVisible(true);
+        btnDeleteCoach.setVisible(false);
 
         tfIdEnt.setDisable(true);
         tfIdEnt.setText("");
@@ -947,6 +1175,23 @@ public class FullRowingController {
         tfDniEnt.setDisable(true);
         tfDniEnt.setText("");
         cbGeneroEnt.setDisable(true);
+
+        cbCM.setDisable(true);
+        cbCM.setSelected(false);
+        cbCF.setDisable(true);
+        cbCF.setSelected(false);
+        cbJM.setDisable(true);
+        cbJM.setSelected(false);
+        cbJF.setDisable(true);
+        cbJF.setSelected(false);
+        cbSM.setDisable(true);
+        cbSM.setSelected(false);
+        cbSF.setDisable(true);
+        cbSF.setSelected(false);
+        cbVM.setDisable(true);
+        cbVM.setSelected(false);
+        cbVF.setDisable(true);
+        cbVF.setSelected(false);
 
         lbCategoriaEnt.setText("");
     }
@@ -971,6 +1216,8 @@ public class FullRowingController {
         }
         return categoria;
     }
+
+
 //endregion
 
 
